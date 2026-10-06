@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>  <!--esto es para que funcione en local tambien -->
+
+</head>
+<body class="min-h-screen bg-gradient-to-b from-emerald-950 via-emerald-950 to-teal-950 text-emerald-50 antialiased">
+
+<!--asi se importa un fragmento con thymelief-->
+<div th:insert="fragments/general.html :: menu"></div>
+
+<div class="px-6 pt-8 pb-4 text-center text-3xl font-semibold tracking-tight">Listar productos, permitiendo borrar y editar</div>
+
+<div class="px-6 pb-6 text-center">
+    <a href="registrarCoche" class="inline-block rounded-full bg-emerald-500 px-5 py-2 text-sm font-semibold tracking-wide text-emerald-950 shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-400">Nuevo Producto</a>
+</div>
+
+
+
+
+<!--LISTADO-->
+
+<div class="mx-auto flex max-w-[106rem] flex-wrap justify-center">
+
+<div th:each="c : ${coches}" style="margin: 20px"
+     class="inline-block align-top w-96 max-w-full h-[39rem] overflow-hidden m-5 rounded-2xl border border-emerald-800/40 bg-emerald-900/20 px-4 py-3 leading-8 text-emerald-100/80 shadow-xl shadow-black/30 transition hover:border-emerald-600/60 hover:bg-emerald-900/30 [&_span]:font-semibold [&_span]:text-emerald-50 [&_br]:leading-none [&_img]:block [&_img]:h-60 [&_img]:w-full [&_img]:rounded-xl [&_img]:object-cover">
+
+    Marca: <span th:text="${c.marca}"></span>
+
+    Modelo: <span th:text="${c.modelo}"></span>
+    <br>
+
+    <!--    asi se llama al controldor de la imagen-->
+    <img th:src="@{${ '../mostrar_imagen?id=' + c.id }}" class="mt-2 h-60 w-full max-w-sm rounded-xl border border-emerald-800/50 object-cover shadow-lg shadow-black/30"/>
+    <br>
+
+    Matricula: <span th:text="${c.matricula}"></span>
+    <br>
+
+    Tipo: <span th:text="${c.tipo}"></span>
+    <br>
+
+    Kilometros: <span th:text="${c.kilometros}"></span>
+    <br>
+
+    Año: <span th:text="${c.año}"></span>
+    <br>
+
+    Caballos: <span th:text="${c.cv}"></span>
+    <br>
+
+    De Serie:   <span th:if="${c.stock}">✔️</span>
+                <span th:unless="${c.stock}">❌</span>
+    <br>
+
+    Precio: <span th:text="${c.precio}" class="text-lg text-emerald-300"></span>€
+    <br>
+
+    <a th:href="@{${ 'borrarCoche?id=' + c.id }}" onclick="return confirm('¿Estás seguro?')" class="underline">BORRAR</a>
+    <br>
+
+    <a th:href="@{${ 'editarCoche?id=' + c.id }}" class="underline">EDITAR</a>
+
+
+</div>
+
+</div>
+
+<!--FIN LISTADO-->
+
+
+</body>
+</html>
