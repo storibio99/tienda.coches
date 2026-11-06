@@ -1,0 +1,31 @@
+<div class="mx-auto w-full max-w-5xl">
+
+  <div class="mb-6 border-b border-emerald-800/40 pb-4 text-3xl font-semibold text-white">Shopping Cart:</div>
+
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+
+    {{#.}}
+
+    <div class="flex flex-col gap-2 rounded-2xl border border-emerald-800/40 bg-emerald-950/60 p-6">
+
+      <div class="text-lg font-semibold text-emerald-50">{{MARCA}}
+        {{MODELO}}</div>
+
+      <img class="my-3 h-48 w-full rounded-2xl border-emerald-800/40 object-cover shadow-xl shadow-black/30"
+           src="mostrar_imagen?id={{COCHE_ID}}"/>
+
+      <div class="text-emerald-400">Price: {{PRECIO}} € </div>
+
+      <div class="text-emerald-100/60">Quantity: <input type="number" value="{{CANTIDAD}}" class="w-20 rounded-lg border border-emerald-700 bg-emerald-950 px-3 py-1 text-center text-emerald-50"/></div>
+
+
+    </div>
+
+    {{/.}}
+  </div>
+
+  <div class="mt-6 text-center">
+    <a href="#" id="realizar_pedido"  class="inline-block rounded-full bg-emerald-500 px-6 py-2 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-400">PLACE ORDER</a>
+  </div>
+
+</div>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>  <!--esto es para que funcione en local tambien -->
+    <link rel="stylesheet" href="css/estilos.css">
+
+</head>
+<body>
+
+<div th:fragment="menu" class="bg-emerald-950 text-emerald-50 border-b border-emerald-800/50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Fila Superior: Título, Volver a Tienda e Idiomas -->
+        <div class="flex flex-col md:flex-row items-center justify-between py-4 border-b border-emerald-800/40 gap-3">
+            <!-- Título Principal -->
+            <h1 class="text-xl font-bold uppercase tracking-wider text-emerald-300" th:text="#{panel.administracion}"></h1>
+
+            <div class="flex items-center gap-4">
+                <!-- Enlace Volver a la Tienda -->
+                <a href="../" class="text-l font-medium text-emerald-200 hover:text-white hover:underline transition flex items-center gap-1" th:text="#{volver.tienda}"></a>
+
+                <!-- Selector de Idiomas -->
+                <div class="flex items-center gap-1 text-xs font-semibold uppercase tracking-wider bg-emerald-900/40 p-1 rounded-full border border-emerald-800">
+                    <a href="?idioma=es" class="px-3 py-1 rounded-full text-emerald-200 hover:bg-emerald-800 hover:text-white transition">Español</a>
+                    <a href="?idioma=en" class="px-3 py-1 rounded-full text-emerald-200 hover:bg-emerald-800 hover:text-white transition">English</a>
+                    <a href="?idioma=jp" class="px-3 py-1 rounded-full text-emerald-200 hover:bg-emerald-800 hover:text-white transition">日本語</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fila Inferior: Menú de Gestión -->
+        <nav class="flex flex-wrap justify-center gap-2 py-3">
+            <a href="gestionarCoches" class="px-4 py-2 rounded-lg text-sm font-medium text-emerald-100/90 hover:bg-emerald-800/60 hover:text-white transition" th:text="#{gestionar.coches}"></a>
+            <a href="gestionarUsuarios" class="px-4 py-2 rounded-lg text-sm font-medium text-emerald-100/90 hover:bg-emerald-800/60 hover:text-white transition" th:text="#{gestionar.usuarios}"></a>
+            <a href="gestionarCategorias" class="px-4 py-2 rounded-lg text-sm font-medium text-emerald-100/90 hover:bg-emerald-800/60 hover:text-white transition" th:text="#{gestionar.categorias}"></a>
+            <a href="gestionarPedidos" class="px-4 py-2 rounded-lg text-sm font-medium text-emerald-100/90 hover:bg-emerald-800/60 hover:text-white transition" th:text="#{gestionar.pedidos}"></a>
+            <a href="cerrarSesion" class="px-4 py-2 rounded-lg text-sm font-medium text-emerald-100/90 hover:bg-emerald-800/60 hover:text-white transition" th:text="#{cerrar.sesion}"></a>
+        </nav>
+    </div>
+</div>
+
+
+
+
+<script src="../static/librerias_js/jquery.js"></script>
+
+</body>
+</html>

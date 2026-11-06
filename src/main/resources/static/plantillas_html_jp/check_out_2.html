@@ -1,0 +1,22 @@
+<div class="mx-auto max-w-md text-center">
+
+    <div class="text-2xl font-semibold text-white">ご注文手続き - ステップ 2</div>
+    <div class="mb-4 text-emerald-100/60">お支払い情報を入力してください</div>
+
+    <div class="rounded-xl border border-emerald-800/40 bg-emerald-950/60 p-4 text-emerald-100">
+        カードの種類:
+        <select id="tipo_tarjeta" class="w-full rounded border border-emerald-700 bg-emerald-950 px-3 py-1 text-emerald-50 focus:outline-none">
+            <option value="0">種類を選択</option>
+            <option value="visa">Visa</option>
+            <option value="master_card">Master Card</option>
+        </select><br><br>
+
+        カード番号: <input type="text" id="numero_tarjeta" class="w-full rounded border border-emerald-700 bg-emerald-950 px-3 py-1 text-emerald-50 focus:outline-none"><br><br>
+        カード名義人: <input type="text" id="titular_tarjeta" class="w-full rounded border border-emerald-700 bg-emerald-950 px-3 py-1 text-emerald-50 focus:outline-none"><br><br>
+        有効期限: <input type="text" id="fechaCaducidad" class="w-full rounded border border-emerald-700 bg-emerald-950 px-3 py-1 text-emerald-50 focus:outline-none"><br><br>
+        CVV: <input type="text" id="cvv" class="w-full rounded border border-emerald-700 bg-emerald-950 px-3 py-1 text-emerald-50 focus:outline-none"><br><br>
+
+        <button id="aceptar_paso_2" class="w-full rounded-full bg-emerald-500 py-2 font-semibold text-emerald-950 hover:bg-emerald-400">次へ進む</button>
+    </div>
+
+</div>

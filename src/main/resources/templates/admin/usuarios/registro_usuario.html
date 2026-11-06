@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-emerald-950 via-emerald-950 to-teal-950 text-emerald-50 antialiased">
+
+<!--insertamos el menu del fragmento-->
+<div th:insert="fragments/general.html :: menu"></div>
+
+<!--TITULO-->
+<div class="px-6 pt-8 pb-4 text-center text-3xl font-semibold tracking-tight">Introduce los datos del nuevo usuario</div>
+<!--END TITULO-->
+
+
+<!--FORMULARIO-->
+<form action="#" th:action="guardarUsuario" th:object="${nuevo}" method="post" enctype="multipart/form-data"
+      class="mx-auto my-10 max-w-xl rounded-2xl border border-emerald-800/40 bg-emerald-900/20 p-6 text-sm font-medium tracking-wide text-emerald-100/80 shadow-xl shadow-black/30
+                 [&_input]:mt-1 [&_input]:mb-1 [&_input]:block [&_input]:w-full [&_input]:rounded-lg [&_input]:border [&_input]:border-emerald-800/60 [&_input]:bg-emerald-950/60 [&_input]:px-3 [&_input]:py-2 [&_input]:text-emerald-50 [&_input]:outline-none [&_input]:focus:border-emerald-500 [&_input]:focus:ring-2 [&_input]:focus:ring-emerald-500/30
+                 [&_span]:block [&_span]:text-xs [&_span]:text-red-400!">
+
+    Nombre: <input type="text" th:field="*{nombre}">
+    <span style="color: darkred" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+    <br>
+
+    Apellidos: <input type="text" th:field="*{apellidos}">
+    <span style="color: darkred" th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></span>
+    <br>
+
+    E-mail: <input type="text" th:field="*{email}">
+    <span style="color: darkred" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    <br>
+
+    Número de teléfono: <input type="number" th:field="*{numTelefono}">
+    <span style="color: darkred" th:if="${#fields.hasErrors('numTelefono')}" th:errors="*{numTelefono}"></span>
+    <br>
+
+    Fecha de nacimiento: <input type="date" th:field="*{fechaNacimiento}">
+    <span style="color: darkred" th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></span>
+    <br>
+
+    Contraseña: <input type="password" th:field="*{pass}">
+    <span style="color: darkred" th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}"></span>
+    <br>
+
+<!--    FUTURA FOTO-->
+<!--    Portada: <input type="file" th:field="*{fotoSubida}" class="cursor-pointer file:mr-4 file:rounded-full file:border-0 file:bg-emerald-800 file:px-4 file:py-1.5 file:text-emerald-100 hover:file:bg-emerald-700">-->
+<!--    <br>-->
+
+
+    <div class="flex justify-center">
+        <input type="submit" value="REGISTRAR" class="mt-4! w-auto! cursor-pointer rounded-full! border-transparent! bg-emerald-500! px-6! py-2! font-semibold tracking-wide text-emerald-950! shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-400!">
+    </div>
+
+</form>
+<!--END FORMULARIO-->
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-emerald-950 via-emerald-950 to-teal-950 text-emerald-50 antialiased">
+
+<!--insertamos el menu del fragmento-->
+<div th:insert="fragments/general.html :: menu"></div>
+
+<div class="px-6 pt-8 pb-4 text-center text-3xl font-semibold tracking-tight">Modifica los datos del producto</div>
+
+
+
+<form action="#" th:action="guardarCambiosCoche" th:object="${cocheEditar}" method="post" enctype="multipart/form-data"
+      class="mx-auto my-10 max-w-xl rounded-2xl border border-emerald-800/40 bg-emerald-900/20 p-6 text-sm font-medium tracking-wide text-emerald-100/80 shadow-xl shadow-black/30
+                 [&_input]:mt-1 [&_input]:mb-1 [&_input]:block [&_input]:w-full [&_input]:rounded-lg [&_input]:border [&_input]:border-emerald-800/60 [&_input]:bg-emerald-950/60 [&_input]:px-3 [&_input]:py-2 [&_input]:text-emerald-50 [&_input]:outline-none [&_input]:focus:border-emerald-500 [&_input]:focus:ring-2 [&_input]:focus:ring-emerald-500/30
+                 [&_span]:block [&_span]:text-xs [&_span]:text-red-400!">
+
+    marca: <input type="text" th:field="*{marca}">
+    <span style="color: darkred" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></span>
+    <br>
+
+    modelo: <input type="text" th:field="*{modelo}">
+    <span style="color: darkred" th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}"></span>
+    <br>
+
+    categoria:
+    <select th:field="*{idCategoria}"
+            class="mt-1 mb-1 block w-full cursor-pointer rounded-lg border border-emerald-800/60 bg-emerald-950/60 px-2 py-2 text-emerald-50 outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/30">
+        <option th:each="c : ${categorias}" th:text="${c.nombre}" th:value="${c.id}"
+                class="bg-emerald-950 text-emerald-50"></option>
+    </select>
+    <br>
+
+    matricula: <input type="text" th:field="*{matricula}">
+    <span style="color: darkred" th:if="${#fields.hasErrors('matricula')}" th:errors="*{matricula}"></span>
+    <br>
+
+    tipo: <input type="text" th:field="*{tipo}">
+    <span style="color: darkred" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></span>
+    <br>
+
+    kilometros: <input type="number" th:field="*{kilometros}">
+    <span style="color: darkred" th:if="${#fields.hasErrors('kilometros')}" th:errors="*{kilometros}"></span>
+    <br>
+
+    Año: <input type="number" th:field="*{año}">
+    <span style="color: darkred" th:if="${#fields.hasErrors('año')}" th:errors="*{año}"></span>
+    <br>
+
+    Potencia (cv): <input type="number" th:field="*{cv}">
+    <span style="color: darkred" th:if="${#fields.hasErrors('cv')}" th:errors="*{cv}"></span>
+    <br>
+
+    De serie: <input type="checkbox" th:field="*{stock}" class="size-4! w-4! p-0! accent-emerald-500">
+    <span style="color: darkred" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span>
+    <br>
+
+    Precio: <input type="number" th:field="*{precio}">
+    <span style="color: darkred" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></span>
+    <br>
+
+    Foto actual portada:<br>
+    <img th:src="@{/mostrar_imagen(id=${cocheEditar.id})}" style="margin: 15px; padding-right: 25px"/>
+    <br>
+
+    Portada: <input type="file" th:field="*{fotoSubida}" class="cursor-pointer file:mr-4 file:rounded-full file:border-0 file:bg-emerald-800 file:px-4 file:py-1.5 file:text-emerald-100 hover:file:bg-emerald-700">
+    <br>
+
+    Foto actual 2:<br>
+    <img th:src="@{/mostrar_imagen2(id=${cocheEditar.id})}" style="margin: 15px; padding-right: 25px"/>
+    <br>
+
+    Foto nueva 2: <input type="file" th:field="*{fotoSubida2}" class="cursor-pointer file:mr-4 file:rounded-full file:border-0 file:bg-emerald-800 file:px-4 file:py-1.5 file:text-emerald-100 hover:file:bg-emerald-700">
+    <br>
+
+    Foto actual 3:<br>
+    <img th:src="@{/mostrar_imagen3(id=${cocheEditar.id})}" style="margin: 15px; padding-right: 25px"/>
+    <br>
+
+    Foto nueva 3: <input type="file" th:field="*{fotoSubida3}" class="cursor-pointer file:mr-4 file:rounded-full file:border-0 file:bg-emerald-800 file:px-4 file:py-1.5 file:text-emerald-100 hover:file:bg-emerald-700">
+    <br>
+
+    Foto actual 4:<br>
+    <img th:src="@{/mostrar_imagen4(id=${cocheEditar.id})}" style="margin: 15px; padding-right: 25px"/>
+    <br>
+
+    Foto nueva 4: <input type="file" th:field="*{fotoSubida4}" class="cursor-pointer file:mr-4 file:rounded-full file:border-0 file:bg-emerald-800 file:px-4 file:py-1.5 file:text-emerald-100 hover:file:bg-emerald-700">
+    <br>
+
+    Foto actual 5:<br>
+    <img th:src="@{/mostrar_imagen5(id=${cocheEditar.id})}" style="margin: 15px; padding-right: 25px"/>
+    <br>
+
+    Foto nueva 5: <input type="file" th:field="*{fotoSubida5}" class="cursor-pointer file:mr-4 file:rounded-full file:border-0 file:bg-emerald-800 file:px-4 file:py-1.5 file:text-emerald-100 hover:file:bg-emerald-700">
+    <br>
+
+    <input type="hidden" th:field="*{id}">
+
+    <div class="flex justify-center">
+        <input type="submit" value="GUARDAR CAMBIOS" class=" mt-4! w-auto! cursor-pointer rounded-full! border-transparent! bg-emerald-500! px-6! py-2! font-semibold tracking-wide text-emerald-950! shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-400!">
+    </div>
+
+</form>
+
+</body>
+</html>

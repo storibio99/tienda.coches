@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>  <!--esto es para que funcione en local tambien -->
+
+</head>
+<body class="min-h-screen bg-gradient-to-b from-emerald-950 via-emerald-950 to-teal-950 text-emerald-50 antialiased">
+
+<!--asi se importa un fragmento con thymelief-->
+<div th:insert="fragments/general.html :: menu"></div>
+
+
+
+<!--BUSCADOR-->
+
+<div class="mx-auto mt-6 mb-6 flex max-w-4xl flex-col gap-4 rounded-2xl border border-emerald-800/40 bg-emerald-950/60 p-4 text-emerald-100 shadow-xl shadow-black/30">
+
+    <!-- Buscador (arriba, adaptado con margen) -->
+    <form action="gestionarCoches" class="flex w-full items-center gap-3 text-sm font-medium tracking-wide text-emerald-100/80">
+        <label for="marca_input" class="whitespace-nowrap" th:text="#{buscador.marca}"></label>
+        <input type="text" id="marca_input" name="marca" th:value="${marca}"
+               class="w-full rounded-lg border border-emerald-700 bg-emerald-950 px-3 py-1.5 text-emerald-50 placeholder-emerald-100/40 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/40">
+        <input type="submit" th:value="#{buscador.boton.buscar}"
+               class="cursor-pointer rounded-full bg-emerald-500 px-4 py-1.5 font-semibold text-emerald-950 transition hover:bg-emerald-400">
+    </form>
+
+    <!-- Paginación y Resultados (abajo) -->
+    <div class="flex w-full flex-col items-center justify-between gap-3 border-t border-emerald-800/40 pt-3 text-sm font-medium sm:flex-row">
+
+        <!-- Paginación -->
+        <div class="flex items-center gap-2">
+            <span class="text-emerald-100/60" th:text="#{buscador.paginacion}" ></span>
+            <a th:if="${ anterior >= 0 }"
+               th:href="@{ ${ 'gestionarCoches?comienzo=' + anterior + '&marca=' + marca } }"
+               class="rounded-full border border-emerald-700 bg-emerald-900/30 px-3 py-1 text-emerald-300 transition hover:border-emerald-500 hover:bg-emerald-500 hover:text-emerald-950" th:text="#{buscador.boton.anterior}">
+
+            </a>
+            <a th:if="${ siguiente < total }"
+               th:href="@{ ${ 'gestionarCoches?comienzo=' + siguiente + '&marca=' + marca } }"
+               class="rounded-full border border-emerald-700 bg-emerald-900/30 px-3 py-1 text-emerald-300 transition hover:border-emerald-500 hover:bg-emerald-500 hover:text-emerald-950" th:text="#{buscador.boton.siguiente}">
+
+            </a>
+        </div>
+
+        <!-- Total resultados -->
+        <div class="text-emerald-100/80">
+           <span th:text="#{buscador.total.resultados}"></span>  <span th:text="${total}" class="font-bold text-emerald-400">0</span>
+        </div>
+
+    </div>
+
+</div>
+
+<!--FIN BUSCADOR-->
+
+
+
+<div class="px-6 pt-8 pb-4 text-center text-3xl font-semibold tracking-tight">Listar productos, permitiendo borrar y editar</div>
+
+<div class="px-6 pb-6 text-center">
+    <a href="registrarCoche" class="inline-block rounded-full bg-emerald-500 px-5 py-2 text-sm font-semibold tracking-wide text-emerald-950 shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-400">Nuevo Producto</a>
+</div>
+
+
+
+
+<!--LISTADO-->
+
+<div class="mx-auto flex max-w-[106rem] flex-wrap justify-center">
+
+<div th:each="c : ${coches}" style="margin: 20px"
+     class="inline-block align-top w-96 max-w-full overflow-hidden m-5 rounded-2xl border border-emerald-800/40 bg-emerald-900/20 px-4 py-3 leading-8 text-emerald-100/80 shadow-xl shadow-black/30 transition hover:border-emerald-600/60 hover:bg-emerald-900/30 [&_span]:font-semibold [&_span]:text-emerald-50 [&_br]:leading-none [&_img]:block [&_img]:h-60 [&_img]:w-full [&_img]:rounded-xl [&_img]:object-cover">
+
+    Marca: <span th:text="${c.marca}"></span>
+
+    Modelo: <span th:text="${c.modelo}"></span>
+    <br>
+
+    Categoria: <span th:text="${c.categoria.nombre}"></span>
+    <br>
+
+    <!--    asi se llama al controldor de la imagen-->
+    <img th:src="@{${ '../mostrar_imagen?id=' + c.id }}"
+         class="mt-2 h-60 w-full max-w-sm rounded-xl border border-emerald-800/50 object-cover shadow-lg shadow-black/30"/>
+    <br>
+
+    Matricula: <span th:text="${c.matricula}"></span>
+    <br>
+
+    Tipo: <span th:text="${c.tipo}"></span>
+    <br>
+
+    Kilometros: <span th:text="${c.kilometros}"></span>
+    <br>
+
+    Año: <span th:text="${c.año}"></span>
+    <br>
+
+    Caballos: <span th:text="${c.cv}"></span>
+    <br>
+
+    De Serie:   <span th:if="${c.stock}">✔️</span>
+                <span th:unless="${c.stock}">❌</span>
+    <br>
+
+    Precio: <span th:text="${c.precio}" class="text-lg text-emerald-300"></span>€
+    <br>
+
+    <a th:href="@{${ 'borrarCoche?id=' + c.id }}" onclick="return confirm('¿Estás seguro?')" class="underline">BORRAR</a>
+    <br>
+
+    <a th:href="@{${ 'editarCoche?id=' + c.id }}" class="underline">EDITAR</a>
+
+
+</div>
+
+</div>
+
+<!--FIN LISTADO-->
+
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!--Buscador y paginacion:-->
+
+<div>
+    Buscador - Marca: <input type="text" id="marca_buscador">
+</div>
+<div>
+    Paginacion:
+    <a id="enlace_anterior" href="#">anterior</a>
+    <a id="enlace_siguiente" href="#">siguiente</a>
+</div>
+
+<div>
+    total resultados: <span id="total_resultados"></span>
+</div>
+
+
+{{#.}}
+<div      class="transition hover:scale-110 inline-block align-top w-96 max-w-full overflow-hidden m-5 rounded-2xl border border-emerald-800/40 bg-emerald-900/20 px-4 py-3 leading-8 text-emerald-100/80 shadow-xl shadow-black/30 transition hover:border-emerald-600/60 hover:bg-emerald-900/30 [&_span]:font-semibold [&_span]:text-emerald-50 [&_br]:leading-none [&_img]:block [&_img]:h-60 [&_img]:w-full [&_img]:rounded-xl [&_img]:object-cover">
+
+<!--    los ponemos en mayusculas porque es como sale en el json-->
+    {{MARCA}}
+    {{MODELO}} <br>
+    <img class="imagen-producto pt-2" src="mostrar_imagen?id={{ID}}"/>
+<!--    Matrícula: {{MATRICULA}} <br>-->
+<!--    Tipo: {{TIPO}} <br>-->
+<!--    Kilometros: {{KILOMETROS}} <br>-->
+<!--    Año: {{AÑO}} <br>-->
+    Categoria: {{CATEGORIA}}<br>
+    Caballos: {{CV}} cv<br>
+<!--    De serie:-->
+<!--    {{#STOCK}}✔️{{/STOCK}}-->
+<!--    {{^STOCK}}❌{{/STOCK}} <br>-->
+    Precio: {{PRECIO}}€<br>
+    <a href="#" class="underline" onclick="mostrar_detalles({{ID}})">Ver detalles</a><br>
+    Cantidad: <input
+        type="number"
+        id="cantidad-{{ID}}"
+        value="1"
+        min="1"
+        class="w-15 rounded-lg border border-emerald-800/60 bg-emerald-950/60 px-3 text-center font-semibold text-emerald-50 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/30"><br>
+    <a href="#" class="underline" onclick="agregarProductoCarrito({{ID}})">Agregar al carrito</a>
+</div>
+{{/.}}

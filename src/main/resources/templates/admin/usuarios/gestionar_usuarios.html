@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>  <!--esto es para que funcione en local tambien -->
+
+</head>
+<body class="min-h-screen bg-gradient-to-b from-emerald-950 via-emerald-950 to-teal-950 text-emerald-50 antialiased">
+
+<!--asi se importa un fragmento con thymelief-->
+<div th:insert="fragments/general.html :: menu"></div>
+
+<div class="px-6 pt-8 pb-4 text-center text-3xl font-semibold tracking-tight">Listar usuarios, permitiendo borrar y editar</div>
+
+<div class="px-6 pb-6 text-center">
+    <a href="registrarUsuario" class="inline-block rounded-full bg-emerald-500 px-5 py-2 text-sm font-semibold tracking-wide text-emerald-950 shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-400">Nuevo Usuario</a>
+</div>
+
+
+
+
+<!--LISTADO-->
+
+<div class="mx-auto flex max-w-[106rem] flex-wrap justify-center">
+
+    <div th:each="u : ${usuarios}"
+         class="inline-block align-top w-96 max-w-full overflow-hidden m-5 rounded-2xl border border-emerald-800/40 bg-emerald-900/20 px-4 pb-4 leading-7 text-emerald-100/80 shadow-xl shadow-black/30 transition hover:border-emerald-600/60 hover:bg-emerald-900/30 [&_span]:font-semibold [&_span]:text-emerald-50 [&_br]:leading-none">
+    <!--    asi se llama al controldor de la imagen-->
+    <!--    <img th:src="@{${ '../mostrar_imagen?id=' + c.id }}"-->
+    <!--         class="mt-2 h-60 w-full max-w-sm rounded-xl border border-emerald-800/50 object-cover shadow-lg shadow-black/30"/>-->
+<!--    futura imagen-->
+    <br>
+
+
+    Nombre: <span th:text="${u.nombre}"></span>
+    <br>
+
+    Apellidos: <span th:text="${u.apellidos}"></span>
+    <br>
+
+    E-mail: <span th:text="${u.email}"></span>
+    <br>
+
+    Número de teléfono: <span th:text="${u.numTelefono}"></span>
+    <br>
+
+    Fecha de nacimiento: <span th:text="${u.fechaNacimiento}"></span>
+    <br>
+
+    Contraseña: <span th:text="${u.pass}"></span>
+    <br>
+
+
+
+
+
+    <a th:href="@{${ 'borrarUsuario?id=' + u.id }}" onclick="return confirm('¿Estás seguro?')" class="underline">BORRAR</a>
+    <br>
+
+    <a th:href="@{${ 'editarUsuario?id=' + u.id }}" class="underline">EDITAR</a>
+
+
+</div>
+
+</div>
+
+<!--FIN LISTADO-->
+
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pedidos de la tienda</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>  <!--esto es para que funcione en local tambien -->
+</head>
+<body class="min-h-screen bg-gradient-to-b from-emerald-950 via-emerald-950 to-teal-950 text-emerald-50 antialiased">
+
+<!--asi se importa un fragmento con thymelief-->
+<div th:insert="~{fragments/general.html :: menu}"></div>
+
+<div class="px-6 pt-8 pb-4 text-center text-3xl font-semibold tracking-tight">Pedidos de la tienda</div>
+
+<!--LISTADO-->
+<div class="mx-auto flex max-w-[106rem] flex-wrap justify-center">
+
+    <div th:each="p : ${pedidos}"
+         class="inline-block align-top w-96 max-w-full overflow-hidden m-5 rounded-2xl border border-emerald-800/40 bg-emerald-900/20 px-5 py-4 leading-8 text-emerald-100/80 shadow-xl shadow-black/30 transition hover:border-emerald-600/60 hover:bg-emerald-900/30 [&_span]:font-semibold [&_span]:text-emerald-50">
+
+        Nombre: <span th:text="${p.nombreCompleto}"></span><br>
+        Dirección: <span th:text="${p.direccion}"></span><br>
+        Estado: <span th:text="${p.estado}"></span><br>
+
+
+        <div class="mt-3 pt-2 border-t border-emerald-800/40">
+            <a th:href="@{ ${ 'verDetallesPedido?id=' + p.id } }" class="text-emerald-300 underline hover:text-emerald-100">
+                Ver detalles
+            </a>
+        </div>
+
+    </div>
+
+</div>
+<!--FIN LISTADO-->
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<div class="mx-auto max-w-md text-center">
+
+    <div class="text-2xl font-semibold text-white">PLACE ORDER - STEP 4</div>
+    <div class="mb-4 text-emerald-100/60">Order Summary</div>
+
+    <div class="space-y-4 rounded-xl border border-emerald-800/40 bg-emerald-950/60 p-4 text-left text-emerald-100">
+
+        <div>
+            <div class="font-semibold text-white">Order Items:</div>
+            <div style="margin: 10px">
+
+                {{#coches}}
+
+                <div style="margin: 10px" class="rounded border border-emerald-800/60 bg-emerald-950/40 p-2">
+                    {{MARCA}} {{MODELO}} <br>
+                    Price per unit: {{PRECIO}} € <br>
+                    Quantity: {{CANTIDAD}}
+                </div>
+
+                {{/coches}}
+
+            </div>
+        </div>
+
+        <div>
+            <div class="font-semibold text-white">Shipping Details</div>
+            <div style="margin: 10px">
+
+                Full Name: {{nombreCompleto}} <br>
+                Address: {{direccion}}<br>
+                Province: {{provincia}}<br>
+                ZIP Code: {{codigoPostal}}<br>
+                Phone: {{telefono}}<br>
+                City: {{ciudad}}<br>
+
+            </div>
+        </div>
+
+        <div>
+            <div class="font-semibold text-white">Payment Details</div>
+            <div style="margin: 10px">
+
+                Card Type: {{tipoTarjeta}}<br>
+                Card Number: {{numeroTarjeta}}<br>
+                Cardholder Name: {{titularTarjeta}}<br>
+                Expiration Date: {{fechaCaducidad}}<br>
+                CVV: {{cvv}}<br>
+
+            </div>
+        </div>
+
+
+        <div>
+            <div class="font-semibold text-white">Additional Details</div>
+            <div style="margin: 10px">
+
+                Delivery Method: {{tipoEntrega}}<br>
+                Selected Dealership: {{concesionarioSeleccionado}}<br>
+                Requires Registration: {{#requiereMatriculacion}}✔️{{/requiereMatriculacion}}
+                {{^requiereMatriculacion}}❌{{/requiereMatriculacion}}<br>
+                Preferred Delivery Date: {{fechaPreferidaEntrega}}<br>
+
+            </div>
+        </div>
+
+        <div>
+            <button id="boton_confirmar_pedido" style="margin: 10px; padding: 10px" class="w-full rounded-full bg-emerald-500 py-2 font-semibold text-emerald-950 hover:bg-emerald-400">CONFIRM ORDER</button>
+        </div>
+
+    </div>
+
+</div>

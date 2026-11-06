@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Store</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@hiseb/confetti@2.2.0/dist/confetti.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> <!-- esto es para que funcione en local tambien -->
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <style>
+
+        /*oculto las operaciones para usuarios no identificados*/
+
+
+        .enlace-carrito, .enlace-cerrar-sesion, .enlace-datos, .enlace-pedidos{
+            display: none;
+        }
+
+
+    </style>
+
+</head>
+<body class="min-h-screen bg-gradient-to-b from-emerald-950 via-emerald-950 to-teal-950 text-emerald-50 antialiased">
+
+<div class="px-6 pt-4 pb-4 text-center font-semibold tracking-tight border-y border-emerald-800/50">
+    <a class="underline text-center" href="admin/inicioAdmin">Admin Access</a>
+</div>
+
+<!--la parte publica sera una SPA, Single Page Aplicattion-->
+<!--el javascript de esta unica pagina gestionará lo que el usuario necesite-->
+
+<!--TITULO-->
+<div class="px-6 pt-8 pb-4 text-center text-3xl font-semibold tracking-tight">Welcome to the public section of the store</div>
+<!--FIN TITULO-->
+
+<div style="text-align: right">
+    <div class="flex justify-center gap-3 pt-3 pb-2 text-xs font-semibold uppercase tracking-wider">
+        <a href="?idioma=es" class="px-3 py-1 rounded-full bg-emerald-900/60 text-emerald-200 border border-emerald-700/50 hover:bg-emerald-800 hover:text-white transition">Español</a>
+        <a href="?idioma=en" class="px-3 py-1 rounded-full bg-emerald-900/60 text-emerald-200 border border-emerald-700/50 hover:bg-emerald-800 hover:text-white transition">English</a>
+        <a href="?idioma=jp" class="px-3 py-1 rounded-full bg-emerald-900/60 text-emerald-200 border border-emerald-700/50 hover:bg-emerald-800 hover:text-white transition">日本語</a>
+    </div>
+</div>
+
+<div style="text-align: right; font-weight: bold; padding-right: 100px" id="usuarioActual">Guest User</div>
+
+<div class="[&_a]:underline sticky top-0 z-10 flex flex-wrap items-center justify-center gap-5 border-y border-emerald-800/50 bg-emerald-950/80 py-3 backdrop-blur">
+    <!--    <div>
+            <a href="#" id="inicio" class="inline-block rounded-full px-4 py-2 text-sm font-medium tracking-wide text-emerald-100/80 transition hover:bg-emerald-800/60 hover:text-white">HOME</a>
+        </div>-->
+    <div>
+        <a href="#" id="coches" class="inline-block rounded-full px-4 py-2 text-sm font-medium tracking-wide text-emerald-100/80 transition hover:bg-emerald-800/60 hover:text-white">CARS</a>
+    </div>
+    <div class="enlace-registrarme">
+        <a href="#" id="registrarme" class="inline-block rounded-full px-4 py-2 text-sm font-medium tracking-wide text-emerald-100/80 transition hover:bg-emerald-800/60 hover:text-white">REGISTER</a>
+    </div>
+    <div class="enlace-identificarme">
+        <a href="#" id="identificarme" class="inline-block rounded-full bg-emerald-500 px-4 py-2 text-sm font-semibold tracking-wide text-emerald-950 shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-400">LOG IN</a>
+    </div>
+    <div class="enlace-carrito">
+        <a href="#" id="carrito" class="inline-block rounded-full px-4 py-2 text-sm font-medium tracking-wide text-emerald-100/80 transition hover:bg-emerald-800/60 hover:text-white">CART</a>
+    </div>
+    <div class="enlace-cerrar-sesion">
+        <a href="#" id="cerrar_sesion" class="inline-block rounded-full border border-emerald-700 px-4 py-2 text-sm font-medium tracking-wide text-emerald-300 transition hover:border-red-400/60 hover:bg-red-500/10 hover:text-red-300">LOG OUT</a>
+    </div>
+</div>
+
+
+<div id="contenedor" class="mx-auto flex max-w-[106rem] flex-wrap justify-center my-10 min-h-[50vh] max-w-6xl rounded-2xl border border-emerald-800/40 bg-emerald-900/20 p-6 shadow-xl shadow-black/30"></div>
+
+
+
+<script src="librerias_js/jquery.js"></script>
+<script src="librerias_js/mustache.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.8/dist/js.cookie.min.js"></script>
+<script>
+    codigo_idioma = "en"
+</script>
+<script src="javascript/validaciones.js"></script>
+<script src="javascript/aplicacion.js"></script>
+
+
+
+</body>
+</html>

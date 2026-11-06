@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles del Pedido</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> <!--esto es para que funcione en local tambien -->
+</head>
+<body class="min-h-screen bg-gradient-to-b from-emerald-950 via-emerald-950 to-teal-950 text-emerald-50 antialiased">
+
+<!--insertamos el menu del fragmento-->
+<div th:insert="~{fragments/general.html :: menu}"></div>
+
+<div class="mx-auto w-full max-w-3xl px-4 py-8 text-center">
+
+    <div class="px-6 pt-2 pb-6 text-3xl font-semibold tracking-tight text-white">
+        Detalles del <span class="text-emerald-400">pedido</span>
+    </div>
+
+    <!-- DATOS DE ENVÍO -->
+    <div class="my-4 rounded-xl border border-emerald-800/40 bg-emerald-950/60 p-4 text-left">
+        <div class="mb-2 text-xs font-medium uppercase tracking-wide text-emerald-100/60">Datos de envío</div>
+        Nombre completo: <span class="font-semibold text-emerald-50" th:text="${pedido.nombreCompleto}"></span><br>
+        Dirección: <span class="font-semibold text-emerald-50" th:text="${pedido.direccion}"></span><br>
+        Provincia: <span class="font-semibold text-emerald-50" th:text="${pedido.provincia}"></span><br>
+        Codigo Postal: <span class="font-semibold text-emerald-50" th:text="${pedido.codigoPostal}"></span><br>
+        Telefono: <span class="font-semibold text-emerald-50" th:text="${pedido.telefono}"></span><br>
+        Ciudad: <span class="font-semibold text-emerald-50" th:text="${pedido.ciudad}"></span><br>
+    </div>
+
+    <!-- DATOS DE PAGO -->
+    <div class="my-4 rounded-xl border border-emerald-800/40 bg-emerald-950/60 p-4 text-left">
+        <div class="mb-2 text-xs font-medium uppercase tracking-wide text-emerald-100/60">Datos de pago</div>
+        Tipo de tarjeta: <span class="font-semibold text-emerald-50" th:text="${pedido.tipoTarjeta}"></span><br>
+        Titular: <span class="font-semibold text-emerald-50" th:text="${pedido.titularTarjeta}"></span><br>
+        Número de tarjeta: <span class="font-semibold text-emerald-50" th:text="${pedido.numeroTarjeta}"></span><br>
+        Fecha de caducidad: <span class="font-semibold text-emerald-50" th:text="${pedido.fechaCaducidad}"></span><br>
+        Cvv: <span class="font-semibold text-emerald-50" th:text="${pedido.cvv}"></span><br>
+
+    </div>
+
+
+    <!-- DATOS EXTRA -->
+    <div class="my-4 rounded-xl border border-emerald-800/40 bg-emerald-950/60 p-4 text-left">
+        <div class="mb-2 text-xs font-medium uppercase tracking-wide text-emerald-100/60">Datos extra</div>
+        Tipo de entrega: <span class="font-semibold text-emerald-50" th:text="${pedido.tipoEntrega}"></span><br>
+        Concesionario seleccionado: <span class="font-semibold text-emerald-50" th:text="${pedido.concesionarioSeleccionado}"></span><br>
+        Requiere matriculación: <span th:if="${pedido.requiereMatriculacion}" class="font-semibold text-emerald-50">✔️</span>
+                                <span th:unless="${pedido.requiereMatriculacion}" class="font-semibold text-emerald-50">❌</span><br>
+        Fecha preferida de entrega: <span class="font-semibold text-emerald-50" th:text="${pedido.fechaPreferidaEntrega}"></span><br>
+
+
+    </div>
+
+    <!-- DATOS DEL PEDIDO -->
+    <div class="my-4 rounded-xl border border-emerald-800/40 bg-emerald-950/60 p-4 text-left">
+        <div class="mb-2 text-xs font-medium uppercase tracking-wide text-emerald-100/60">Datos del pedido</div>
+
+        <div th:each="productoPedido : ${pedido.productosPedido}" class="my-3 rounded-lg border border-emerald-800/30 bg-emerald-900/20 p-3">
+            titulo: <span class="font-semibold text-emerald-50" th:text="${productoPedido.coche.marca}"></span>
+            <span class="font-semibold text-emerald-400" th:text="${productoPedido.coche.modelo}"></span><br>
+
+            precio/unidad: <span class="font-semibold text-emerald-400" th:text="${productoPedido.coche.precio} + ' €'"></span><br>
+            cantidad: <span class="font-semibold text-emerald-50" th:text="${productoPedido.cantidad}"></span><br>
+
+        </div>
+
+
+        <input type="hidden" id="id_pedido" th:field="${pedido.id}">
+
+        <select id="select_estado" th:field="${pedido.estado}"
+                class="mt-2 w-full rounded-lg border border-emerald-800/40 bg-emerald-950/80 px-3 py-2 text-sm text-emerald-50 shadow-sm transition-colors focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400">
+            <option th:each="e : ${estados}"
+                    th:text="${e}"
+                    th:value="${e.key}"
+                    class="bg-emerald-950 text-emerald-50"></option>
+        </select>
+        <script src="../librerias_js/jquery.js"></script>
+
+
+        <script>
+            $("#select_estado").change(
+                function (){
+                    //alert("")
+                    estado_seleccionado = $("#select_estado").find(":selected").val();
+                    id_pedido = $("#id_pedido").val()
+                    alert("cambiar a estado: " + estado_seleccionado + " id pedido: " + id_pedido)
+
+                    $.post("restPedido/actualizarEstadoPedido",
+                        {
+                            id: id_pedido,
+                            estado: estado_seleccionado
+                        }).done(function (res){
+                            if (res != "ok"){
+                                alert(res)
+                            }else {
+                                alert("estado acutualizado correctamente")
+                            }
+                    })
+                }
+            )
+        </script>
+
+    </div>
+
+</div>
+
+</body>
+</html>

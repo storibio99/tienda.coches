@@ -1,0 +1,38 @@
+<div class="max-w-md mx-auto p-6">
+
+    <p class="mb-4 text-2xl">会員登録情報を入力してください:</p>
+
+    <form id="form_registro_usuario" class="space-y-3">
+
+        <label for="nombre" class="block">名:</label>
+        <input type="text" id="nombre" name="nombre" class="w-full border border-emerald-300 rounded p-2" required>
+
+        <label for="apellidos" class="block">姓:</label>
+        <input type="text" id="apellidos" name="apellidos" class="w-full border border-emerald-300 rounded p-2">
+
+        <label for="email" class="block">メールアドレス:</label>
+        <input type="email" id="email" name="email" class="w-full border border-emerald-300 rounded p-2">
+
+        <label for="numTelefono" class="block">電話番号:</label>
+        <input type="tel" id="numTelefono" name="numTelefono" class="w-full border border-emerald-300 rounded p-2">
+
+        <label for="pass" class="block">パスワード:</label>
+        <input type="password" id="pass" name="pass" class="w-full border border-emerald-300 rounded p-2">
+
+        <label for="fechaNacimiento" class="block">生年月日:</label>
+        <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="w-full border border-emerald-300 rounded p-2">
+
+        <label for="avatar" class="block">プロフィール写真 (任意):</label>
+        <input type="file" id="avatar" name="avatar" accept="image/*"
+               class="w-full border border-emerald-300 rounded cursor-pointer
+              file:mr-4 file:py-2 file:px-4 file:border-0
+              file:bg-emerald-600 file:text-white file:font-medium
+              hover:file:bg-emerald-700">
+
+        <button type="submit" id="btn-registrar" class="w-full p-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded p-2">
+            登録する
+        </button>
+
+    </form>
+
+</div>

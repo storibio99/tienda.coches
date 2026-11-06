@@ -1,0 +1,72 @@
+<div class="mx-auto max-w-md text-center">
+
+    <div class="text-2xl font-semibold text-white">ご注文手続き - ステップ 4</div>
+    <div class="mb-4 text-emerald-100/60">注文確認</div>
+
+    <div class="space-y-4 rounded-xl border border-emerald-800/40 bg-emerald-950/60 p-4 text-left text-emerald-100">
+
+        <div>
+            <div class="font-semibold text-white">ご注文商品:</div>
+            <div style="margin: 10px">
+
+                {{#coches}}
+
+                <div style="margin: 10px" class="rounded border border-emerald-800/60 bg-emerald-950/40 p-2">
+                    {{MARCA}} {{MODELO}} <br>
+                    単価: {{PRECIO}} € <br>
+                    数量: {{CANTIDAD}}
+                </div>
+
+                {{/coches}}
+
+            </div>
+        </div>
+
+        <div>
+            <div class="font-semibold text-white">配送先情報</div>
+            <div style="margin: 10px">
+
+                氏名: {{nombreCompleto}} <br>
+                住所: {{direccion}}<br>
+                都道府県: {{provincia}}<br>
+                郵便番号: {{codigoPostal}}<br>
+                電話番号: {{telefono}}<br>
+                市区町村: {{ciudad}}<br>
+
+            </div>
+        </div>
+
+        <div>
+            <div class="font-semibold text-white">お支払い情報</div>
+            <div style="margin: 10px">
+
+                カードの種類: {{tipoTarjeta}}<br>
+                カード番号: {{numeroTarjeta}}<br>
+                カード名義人: {{titularTarjeta}}<br>
+                有効期限: {{fechaCaducidad}}<br>
+                CVV: {{cvv}}<br>
+
+            </div>
+        </div>
+
+
+        <div>
+            <div class="font-semibold text-white">追加情報</div>
+            <div style="margin: 10px">
+
+                受け取り方法: {{tipoEntrega}}<br>
+                選択されたディーラー: {{concesionarioSeleccionado}}<br>
+                車両登録が必要: {{#requiereMatriculacion}}✔️{{/requiereMatriculacion}}
+                {{^requiereMatriculacion}}❌{{/requiereMatriculacion}}<br>
+                希望納車日: {{fechaPreferidaEntrega}}<br>
+
+            </div>
+        </div>
+
+        <div>
+            <button id="boton_confirmar_pedido" style="margin: 10px; padding: 10px" class="w-full rounded-full bg-emerald-500 py-2 font-semibold text-emerald-950 hover:bg-emerald-400">注文を確定する</button>
+        </div>
+
+    </div>
+
+</div>

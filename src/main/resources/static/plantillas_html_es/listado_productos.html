@@ -1,0 +1,67 @@
+<!--Buscador y paginacion:-->
+
+<div class="mb-6 flex w-full flex-col gap-4 rounded-2xl border border-emerald-800/40 bg-emerald-950/60 p-4 text-emerald-100 shadow-xl shadow-black/30">
+
+    <!-- Buscador (arriba, ancho completo) -->
+    <div class="flex w-full items-center gap-3 text-sm font-medium tracking-wide text-emerald-100/80">
+        <label for="marca_buscador" class="whitespace-nowrap">Buscador - Marca:</label>
+        <input type="text" id="marca_buscador" placeholder="Buscar por marca..."
+               class="w-full rounded-lg border border-emerald-700 bg-emerald-950 px-3 py-1.5 text-emerald-50 placeholder-emerald-100/40 outline-none transition focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/40">
+    </div>
+
+    <!-- Paginación y Resultados (abajo, adaptables a móviles) -->
+    <div class="flex w-full flex-col items-center justify-between gap-3 border-t border-emerald-800/40 pt-3 text-sm font-medium sm:flex-row">
+
+        <!-- Paginación -->
+        <div class="flex items-center gap-2">
+            <span class="text-emerald-100/60">Paginación:</span>
+            <a id="enlace_anterior" href="#"
+               class="rounded-full border border-emerald-700 bg-emerald-900/30 px-3 py-1 text-emerald-300 transition hover:border-emerald-500 hover:bg-emerald-500 hover:text-emerald-950">
+                anterior
+            </a>
+            <a id="enlace_siguiente" href="#"
+               class="rounded-full border border-emerald-700 bg-emerald-900/30 px-3 py-1 text-emerald-300 transition hover:border-emerald-500 hover:bg-emerald-500 hover:text-emerald-950">
+                siguiente
+            </a>
+        </div>
+
+        <!-- Total resultados -->
+        <div class="text-emerald-100/80">
+            total resultados: <span id="total_resultados" class="font-bold text-emerald-400">0</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+{{#.}}
+<div      class="transition hover:scale-110 inline-block align-top w-96 max-w-full overflow-hidden m-5 rounded-2xl border border-emerald-800/40 bg-emerald-900/20 px-4 py-3 leading-8 text-emerald-100/80 shadow-xl shadow-black/30 transition hover:border-emerald-600/60 hover:bg-emerald-900/30 [&_span]:font-semibold [&_span]:text-emerald-50 [&_br]:leading-none [&_img]:block [&_img]:h-60 [&_img]:w-full [&_img]:rounded-xl [&_img]:object-cover">
+
+<!--    los ponemos en mayusculas porque es como sale en el json-->
+    {{MARCA}}
+    {{MODELO}} <br>
+    <img class="imagen-producto pt-2" src="mostrar_imagen?id={{ID}}"/>
+<!--    Matrícula: {{MATRICULA}} <br>-->
+<!--    Tipo: {{TIPO}} <br>-->
+<!--    Kilometros: {{KILOMETROS}} <br>-->
+<!--    Año: {{AÑO}} <br>-->
+    Categoria: {{CATEGORIA}}<br>
+    Caballos: {{CV}} cv<br>
+<!--    De serie:-->
+<!--    {{#STOCK}}✔️{{/STOCK}}-->
+<!--    {{^STOCK}}❌{{/STOCK}} <br>-->
+    Precio: {{PRECIO}}€<br>
+    <a href="#" class="underline" onclick="mostrar_detalles({{ID}})">Ver detalles</a><br>
+    Cantidad: <input
+        type="number"
+        id="cantidad-{{ID}}"
+        value="1"
+        min="1"
+        class="w-15 rounded-lg border border-emerald-800/60 bg-emerald-950/60 px-3 text-center font-semibold text-emerald-50 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/30"><br>
+    <a href="#" class="underline" onclick="agregarProductoCarrito({{ID}})">Agregar al carrito</a>
+</div>
+{{/.}}

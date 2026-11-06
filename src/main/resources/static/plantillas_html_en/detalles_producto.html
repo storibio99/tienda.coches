@@ -1,0 +1,98 @@
+<div class="mx-auto w-full max-w-3xl text-center">
+
+    <div class="px-6 pt-2 pb-4 text-3xl font-semibold tracking-tight text-white">
+        {{MARCA}}
+        <span class="text-emerald-400">{{MODELO}}</span>
+    </div>
+
+    <div class="rounded-xl border border-emerald-800/40 bg-emerald-950/60 px-4 py-3">
+        <div class="text-l font-medium uppercase tracking-wide text-emerald-100/60">Category</div>
+        <div class="text-2xl font-semibold text-emerald-50">{{CATEGORIA}}</div>
+    </div>
+
+    <!--    IMAGES-->
+    <div id="carrusel" class="relative flex items-center justify-center">
+        <button id="btn-prev" type="button"
+                class="absolute left-2 z-10 hidden rounded-full bg-black/50 px-4 py-2 text-2xl text-emerald-300 hover:bg-black/70">
+            &#8249;
+        </button>
+
+        <div class="flex justify-center">
+            <img id="imagen01" class="imagen-producto my-5 h-80 rounded-2xl border border-emerald-800/40 object-cover shadow-xl shadow-black/30"
+                 src="mostrar_imagen?id={{ID}}"/>
+
+            <img id="imagen02" class="imagen-producto my-5 h-80 rounded-2xl border border-emerald-800/40 object-cover shadow-xl shadow-black/30"
+                 src="mostrar_imagen2?id={{ID}}"/>
+
+            <img id="imagen03" class="imagen-producto my-5 h-80 rounded-2xl border border-emerald-800/40 object-cover shadow-xl shadow-black/30"
+                 src="mostrar_imagen3?id={{ID}}"/>
+
+            <img id="imagen04" class="imagen-producto my-5 h-80 rounded-2xl border border-emerald-800/40 object-cover shadow-xl shadow-black/30"
+                 src="mostrar_imagen4?id={{ID}}"/>
+
+            <img id="imagen05" class="imagen-producto my-5 h-80 rounded-2xl border border-emerald-800/40 object-cover shadow-xl shadow-black/30"
+                 src="mostrar_imagen5?id={{ID}}"/>
+        </div>
+
+        <button id="btn-next" type="button"
+                class="absolute right-2 z-10 hidden rounded-full bg-black/50 px-4 py-2 text-2xl text-emerald-300 hover:bg-black/70">
+            &#8250;
+        </button>
+    </div>
+
+    <div id="indicadores" class="mb-4 flex justify-center gap-2"></div>
+    <!--    END IMAGES-->
+
+    <div class="mx-auto my-6 grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-2">
+
+        <div class="rounded-xl border border-emerald-800/40 bg-emerald-950/60 px-4 py-3">
+            <div class="text-xs font-medium uppercase tracking-wide text-emerald-100/60">License Plate</div>
+            <div class="text-lg font-semibold text-emerald-50">{{MATRICULA}}</div>
+        </div>
+
+        <div class="rounded-xl border border-emerald-800/40 bg-emerald-950/60 px-4 py-3">
+            <div class="text-xs font-medium uppercase tracking-wide text-emerald-100/60">Type</div>
+            <div class="text-lg font-semibold text-emerald-50">{{TIPO}}</div>
+        </div>
+
+        <div class="rounded-xl border border-emerald-800/40 bg-emerald-950/60 px-4 py-3">
+            <div class="text-xs font-medium uppercase tracking-wide text-emerald-100/60">Kilometers</div>
+            <div class="text-lg font-semibold text-emerald-50">{{KILOMETROS}}</div>
+        </div>
+
+        <div class="rounded-xl border border-emerald-800/40 bg-emerald-950/60 px-4 py-3">
+            <div class="text-xs font-medium uppercase tracking-wide text-emerald-100/60">Year</div>
+            <div class="text-lg font-semibold text-emerald-50">{{AÑO}}</div>
+        </div>
+
+        <div class="rounded-xl border border-emerald-800/40 bg-emerald-950/60 px-4 py-3">
+            <div class="text-xs font-medium uppercase tracking-wide text-emerald-100/60">Horsepower</div>
+            <div class="text-lg font-semibold text-emerald-50">{{CV}}</div>
+        </div>
+
+        <div class="rounded-xl border border-emerald-800/40 bg-emerald-950/60 px-4 py-3">
+            <div class="text-xs font-medium uppercase tracking-wide text-emerald-100/60">In Stock</div>
+            <div class="text-lg font-semibold text-emerald-50">{{#STOCK}}✔️{{/STOCK}}
+                {{^STOCK}}❌{{/STOCK}}</div>
+        </div>
+
+    </div>
+
+    <div class="my-6 text-4xl font-semibold tracking-tight text-emerald-400">
+        {{PRECIO}} €
+    </div>
+
+    <div class="mx-auto flex max-w-md flex-wrap items-center justify-center gap-4 rounded-2xl border border-emerald-800/40 bg-emerald-900/20 p-5">
+        <label class="flex items-center gap-2 text-sm font-medium tracking-wide text-emerald-100/80">
+            Quantity:
+            <input type="number" value="1" min="1"
+                   class="w-20 rounded-lg border border-emerald-700 bg-emerald-950 px-3 py-2 text-center text-emerald-50 focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/40">
+        </label>
+
+        <a href="#" onclick="alert('agregar cantidad a carrito')"
+           class="inline-block rounded-full bg-emerald-500 px-6 py-2 text-sm font-semibold tracking-wide text-emerald-950 shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-400">
+            ADD TO CART
+        </a>
+    </div>
+
+</div>
